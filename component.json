@@ -1,0 +1,13 @@
+{
+  "name": "pythagoras",
+  "repo": "pazguille/pythagoras",
+  "description": "The Pythagorean Distance Formula",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}
