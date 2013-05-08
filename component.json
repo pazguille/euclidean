@@ -1,9 +1,15 @@
 {
-  "name": "pythagoras",
-  "repo": "pazguille/pythagoras",
-  "description": "The Pythagorean Distance Formula",
+  "name": "euclidean",
+  "repo": "pazguille/euclidean",
+  "description": "Calculates the distance between two points.",
   "version": "0.0.1",
-  "keywords": [],
+  "author": "Guille Paz <guille87paz@gmail.com>",
+  "twitter": "@pazguille",
+  "keywords": [
+    "distance",
+    "points",
+    "coordinates"
+  ],
   "dependencies": {},
   "development": {},
   "license": "MIT",
