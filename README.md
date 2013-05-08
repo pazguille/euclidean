@@ -1,6 +1,6 @@
 # Euclidean
 
-In mathematics, the Euclidean distance or Euclidean metric is the "ordinary" distance between two points that one would measure with a ruler, and is given by the Pythagorean formula. (http://en.wikipedia.org/wiki/Euclidean_distance)[Read More]
+In mathematics, the Euclidean distance or Euclidean metric is the "ordinary" distance between two points that one would measure with a ruler, and is given by the Pythagorean formula. [http://en.wikipedia.org/wiki/Euclidean_distance](Read More).
 
 ## Installation
 
