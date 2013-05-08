@@ -52,7 +52,7 @@ ecudlidean(pointA, pointB);
 
 ## License
 ### The MIT License
-Copyright (c) {{year}} [@pazguille](http://twitter.com/pazguille)
+Copyright (c) 2013 [@pazguille](http://twitter.com/pazguille)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
