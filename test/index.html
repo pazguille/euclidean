@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Euclidean Component</title>
+        <style>
+            body {
+                font-family: "Helvetica Neue", Helvetica, Arial, serif;
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            #a, #b {
+                width: 100px;
+                height: 100px;
+                top: 200px;
+                position: absolute;
+            }
+
+            #a {
+                right: 265px;
+                background-color: red;
+            }
+
+            #b {
+                left: 35px;
+                background-color: blue;
+                opacity: .7
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Distance between red box and blue box: <span id="distance"></span>px</h1>
+        <div id="a"></div>
+        <div id="b"></div>
+        <script src="../build/build.js"></script>
+        <script>
+            var distance = require('euclidean'),
+                el = document.getElementById('distance'),
+                elA = document.getElementById('a'),
+                elB = document.getElementById('b');
+
+            /**
+             * Calculates the center of a given element.
+             * @private
+             * @function
+             * @param {DOMElement} el - DOM element to calculate its center.
+             * @returns {Object}
+             */
+            function calculateCenterPoint(el) {
+
+                var clientRect = el.getBoundingClientRect();
+
+                return {
+                    'x': clientRect.left + (el.clientWidth / 2),
+                    'y': clientRect.top + (el.clientHeight / 2)
+                }
+            }
+
+            el.innerHTML = distance(calculateCenterPoint(elA), calculateCenterPoint(elB));
+
+            window.addEventListener('resize', function () {
+                el.innerHTML = distance(calculateCenterPoint(elA), calculateCenterPoint(elB));
+            });
+        </script>
+    </body>
+</html>
