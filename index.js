@@ -9,7 +9,7 @@ var M = window.Math;
  * @returns {Number}
  */
 function euclidean(p1, p2) {
-    var deltaX = M.pow(p1.x - p2.x, 2);
+    var deltaX = M.pow(p1.x - p2.x, 2),
         deltaY = M.pow(p1.y - p2.y, 2);
 
     return M.floor(M.sqrt(deltaX + deltaY));
