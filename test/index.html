@@ -6,49 +6,65 @@
         <style>
             body {
                 font-family: "Helvetica Neue", Helvetica, Arial, serif;
+                background-color: #ECF0F1;
+                color: #34495E;
+                text-shadow: 0 -1px #2C3E50;
+                text-align: center;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0,0,0);
             }
 
             h1 {
-                text-align: center;
+                font-size: 4em;
+                margin: 0 0 40px;
             }
 
             #a, #b {
-                width: 100px;
-                height: 100px;
-                top: 200px;
                 position: absolute;
             }
 
             #a {
+                width: 100px;
+                height: 100px;
+                top: 400px;
                 right: 265px;
-                background-color: red;
+                background-color: #2ECC71;
             }
 
             #b {
+                top: 425px;
                 left: 35px;
-                background-color: blue;
-                opacity: .7
+                width: 50px;
+                height: 50px;
+                background-color: #C0392B;
+                opacity: .7;
+                transition: -webkit-transform 5s ease;
+                transition: -transform 5s ease;
+                -webkit-transform: translateX(0px);
+                transform: translateX(0px);
+            }
+
+            .btn-start {
+                background-color: #c0392b;
+                border: none;
+                font-size: 3em;
+                padding: 10px 30px;
+                color: #FFF;
+                cursor: pointer;
+            }
+
+            .btn-start:active {
+                background-color: #e74c3c;
             }
         </style>
     </head>
     <body>
-        <h1>Distance between red box and blue box: <span id="distance"></span>px</h1>
+        <h1>Distance between boxes: <span id="distance"></span>px</h1>
+        <button class="btn-start">Move!</button>
         <div id="a"></div>
         <div id="b"></div>
         <script src="../build/build.js"></script>
         <script>
-            var distance = require('euclidean'),
-                el = document.getElementById('distance'),
-                elA = document.getElementById('a'),
-                elB = document.getElementById('b');
-
-            /**
-             * Calculates the center of a given element.
-             * @private
-             * @function
-             * @param {DOMElement} el - DOM element to calculate its center.
-             * @returns {Object}
-             */
             function calculateCenterPoint(el) {
 
                 var clientRect = el.getBoundingClientRect();
@@ -59,10 +75,26 @@
                 }
             }
 
-            el.innerHTML = distance(calculateCenterPoint(elA), calculateCenterPoint(elB));
+            var distance = require('euclidean'),
+                el = document.getElementById('distance'),
+                btn = document.getElementsByClassName('btn-start')[0],
+                elA = document.getElementById('a'),
+                elB = document.getElementById('b'),
+                moveTo = distance(calculateCenterPoint(elA), calculateCenterPoint(elB));
 
-            window.addEventListener('resize', function () {
+            function fn() {
                 el.innerHTML = distance(calculateCenterPoint(elA), calculateCenterPoint(elB));
+                window.webkitRequestAnimationFrame(fn);
+            }
+
+            btn.addEventListener('click', function () {
+                fn();
+                elB.style.WebkitTransform = 'translateX(' + moveTo + 'px)';
+            });
+
+            elB.addEventListener('webkitTransitionEnd', function () {
+                elB.style.WebkitTransform = 'translateX(0)';
+                window.webkitCancelAnimationFrame(fn);
             });
         </script>
     </body>
