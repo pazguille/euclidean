@@ -28,19 +28,17 @@
                 width: 100px;
                 height: 100px;
                 top: 400px;
-                right: 265px;
+                right: 465px;
                 background-color: #2ECC71;
             }
 
             #b {
                 top: 425px;
-                left: 35px;
+                left: 435px;
                 width: 50px;
                 height: 50px;
                 background-color: #C0392B;
                 opacity: .7;
-                transition: -webkit-transform 5s ease;
-                transition: -transform 5s ease;
                 -webkit-transform: translateX(0px);
                 transform: translateX(0px);
             }
@@ -82,21 +80,40 @@
                 btn = document.getElementsByClassName('btn-start')[0],
                 elA = document.getElementById('a'),
                 elB = document.getElementById('b'),
-                moveTo = distance(calculateCenterPoint(elA), calculateCenterPoint(elB));
+                moveTo = distance(calculateCenterPoint(elA), calculateCenterPoint(elB)),
+                delta,
+                i = 0;
+                stop = true,
+                requestAnimFrame = (function () {
+                    return window.requestAnimationFrame ||
+                        window.webkitRequestAnimationFrame ||
+                        window.mozRequestAnimationFrame ||
+                        function (callback) {
+                            window.setTimeout(callback, 1000 / 60);
+                        };
+                }());
+
+            el.innerHTML = moveTo;
 
             function fn() {
-                el.innerHTML = distance(calculateCenterPoint(elA), calculateCenterPoint(elB));
-                window.webkitRequestAnimationFrame(fn);
-            }
 
-            btn.addEventListener('click', function () {
-                fn();
+                if (stop) {
+                    return;
+                }
+
+                if (i <= moveTo) {
+                    el.innerHTML = delta - i;
+                    elB.style.WebkitTransform = 'translateX(' + (i += 1) + 'px)';
+                }
+
+                requestAnimFrame(fn);
+            };
+
+            btn.addEventListener('click', function (eve) {
+                stop = false;
+                delta = moveTo;
                 elB.style.WebkitTransform = 'translateX(' + moveTo + 'px)';
-            });
-
-            elB.addEventListener('webkitTransitionEnd', function () {
-                elB.style.WebkitTransform = 'translateX(0)';
-                window.webkitCancelAnimationFrame(fn);
+                fn();
             });
         </script>
     </body>
