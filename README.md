@@ -30,18 +30,18 @@ var pointB = {
 
 Calculate distante between `pointA` and `pointB`:
 ```js
-ecudlidean(pointA, pointB);
+euclidean(pointA, pointB);
 ```
 
 ## API
 
-### ecudlidean(p1, p2)
+### euclidean(p1, p2)
 Calculate distance between two points.
 - `p1` - A given point with coordenates xy.
 - `p2` - A given point with coordenates xy.
 
 ```js
-ecudlidean(pointA, pointB);
+euclidean(pointA, pointB);
 ```
 
 ## Contact
